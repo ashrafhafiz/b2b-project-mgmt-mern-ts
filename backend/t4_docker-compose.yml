@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  mongo_srv1:
+    image: mongo
+    command:
+      [
+        "mongod",
+        "--auth",
+        "--keyFile",
+        "/keyfile/mongodb-keyfil",
+        "--replSet",
+        "rs0",
+        "--bind_ip_all",
+        "--port",
+        "27017",
+      ]
+    container_name: mongo_srv1
+    networks:
+      - dev-network
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: echo "try { rs.status() } catch (err) { rs.initiate({_id:'rs0',members:[{_id:0,host:'mongo_srv1:27017'}]}) }" | mongosh -u $${MONGO_INITDB_ROOT_USERNAME} -p $${MONGO_INITDB_ROOT_PASSWORD} --port 27017 --quiet
+      interval: 5s
+      timeout: 30s
+      start_period: 0s
+      start_interval: 1s
+      retries: 30
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+    volumes:
+      - ~/docker/mongo_srv1/storage:/data/db
+      - ~/docker/mongo_srv1/keyfile:/keyfile:ro
+    user: "999:999"
+
+networks:
+  dev-network:
+    name: dev-network
+    external: true

@@ -1,0 +1,82 @@
+{
+  "clientName": "Thunder Client",
+  "collectionName": "TeamSync",
+  "collectionId": "860512c8-bf81-4f40-86bf-a76057260497",
+  "dateExported": "2025-01-18T18:33:12.676Z",
+  "version": "1.2",
+  "folders": [
+    {
+      "_id": "ad207dcb-cf19-443d-9eea-d1d955b82d1d",
+      "name": "Auth",
+      "containerId": "",
+      "created": "2025-01-18T16:33:47.916Z",
+      "sortNum": 10000
+    }
+  ],
+  "requests": [
+    {
+      "_id": "8fdaeeb0-d851-46b2-bdda-557da5116ab2",
+      "colId": "860512c8-bf81-4f40-86bf-a76057260497",
+      "containerId": "",
+      "name": "Home",
+      "url": "http://localhost:8000",
+      "method": "GET",
+      "sortNum": 10000,
+      "created": "2025-01-18T16:32:13.808Z",
+      "modified": "2025-01-18T16:32:45.737Z",
+      "headers": []
+    },
+    {
+      "_id": "41f03f79-2983-4882-86d4-5272a3b09c6d",
+      "colId": "860512c8-bf81-4f40-86bf-a76057260497",
+      "containerId": "ad207dcb-cf19-443d-9eea-d1d955b82d1d",
+      "name": "Register",
+      "url": "/auth/register",
+      "method": "POST",
+      "sortNum": 30000,
+      "created": "2025-01-18T16:33:57.388Z",
+      "modified": "2025-01-18T16:39:29.202Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"Ashraf HA\",\n  \"email\": \"ashrafha@example.com\",\n  \"password\": \"\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "5b9e3c48-6b86-46e2-b22d-ba9476b32a9a",
+      "colId": "860512c8-bf81-4f40-86bf-a76057260497",
+      "containerId": "ad207dcb-cf19-443d-9eea-d1d955b82d1d",
+      "name": "Login",
+      "url": "/auth/login",
+      "method": "POST",
+      "sortNum": 40000,
+      "created": "2025-01-18T18:23:00.815Z",
+      "modified": "2025-01-18T18:23:54.911Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"ashrafha@example.com\",\n  \"password\": \"\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "20dcee3c-3ce8-4c12-8da4-3a40850eb575",
+      "colId": "860512c8-bf81-4f40-86bf-a76057260497",
+      "containerId": "ad207dcb-cf19-443d-9eea-d1d955b82d1d",
+      "name": "Logout",
+      "url": "/auth/logout",
+      "method": "POST",
+      "sortNum": 50000,
+      "created": "2025-01-18T18:31:57.077Z",
+      "modified": "2025-01-18T18:32:26.401Z",
+      "headers": []
+    }
+  ],
+  "settings": {
+    "options": {
+      "baseUrl": "http://localhost:8000/api"
+    }
+  },
+  "ref": "_EWDFO8UTZNCzY0aIs9yAQD1v8y0qsB7rJwhQs3xj1p-QgWMWI32mAhJ7Un7GCBAzM3Xhj1vnqW6srXT0TYL3w"
+}

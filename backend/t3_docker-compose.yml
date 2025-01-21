@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  mongo_srv1:
+    image: mongo:latest
+    container_name: mongo_srv1
+    command: mongod --auth --keyFile /data/mongodb-keyfile --replSet rs0
+    networks:
+      - dev-network
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+    volumes:
+      - ~/docker/mongo_srv1/storage:/data/db
+      - ~/docker/mongo_srv1/mongodb-keyfile:/data/mongodb-keyfile:ro
+    user: "999:999"
+
+networks:
+  dev-network:
+    name: dev-network
+    external: true

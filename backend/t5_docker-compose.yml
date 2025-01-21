@@ -1,0 +1,57 @@
+version: "3.8"
+
+services:
+  mongo1:
+    hostname: mongo1
+    image: mongo
+    expose:
+      - 27017
+    ports:
+      - 30001:27017
+    networks:
+      - dev-network
+    restart: always
+    command: mongod --replSet rs0
+  mongo2:
+    hostname: mongo2
+    image: mongo
+    expose:
+      - 27017
+    ports:
+      - 30002:27017
+    networks:
+      - dev-network
+    restart: always
+    command: mongod --replSet rs0
+
+  mongoinit:
+    image: mongo
+    # this container will exit after executing the command
+    restart: "no"
+    depends_on:
+      - mongo1
+      - mongo2
+    command: >
+      mongo --host mongo1:27017 --eval 
+      '
+      db = (new Mongo("localhost:27017")).getDB("test");
+      config = {
+      "_id" : "rs0",
+      "members" : [
+        {
+          "_id" : 0,
+          "host" : "mongo1:27017"
+        },
+        {
+          "_id" : 1,
+          "host" : "mongo2:27017"
+        }
+      ]
+      };
+      rs.initiate(config);
+      '
+
+networks:
+  dev-network:
+    name: dev-network
+    external: true
