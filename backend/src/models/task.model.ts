@@ -82,5 +82,12 @@ const taskSchema = new Schema<TaskDocument>(
   }
 );
 
+taskSchema.pre("save", function (next) {
+  if (!this.description) {
+    this.description = `The description for the task: ${this.title} goes here.`;
+  }
+  next();
+});
+
 const TaskModel = mongoose.model<TaskDocument>("Task", taskSchema);
 export default TaskModel;

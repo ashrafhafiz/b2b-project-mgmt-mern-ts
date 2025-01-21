@@ -63,7 +63,7 @@ export const getProjectAnalyticsService = async (
     _id: projectId,
     workspace: workspaceId,
   });
-  if (!project) {
+  if (!project || project.workspace.toString() !== workspaceId) {
     throw new NotFoundException(
       "Project not found or does not belong to this workspace!"
     );
@@ -129,7 +129,7 @@ export const updateProjectService = async (
     _id: projectId,
     workspace: workspaceId,
   });
-  if (!project) {
+  if (!project || project.workspace.toString() !== workspaceId) {
     throw new NotFoundException(
       "Project not found or does not belong to this workspace!"
     );

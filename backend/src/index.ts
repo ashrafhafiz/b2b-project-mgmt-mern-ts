@@ -14,6 +14,7 @@ import userRouter from "./routes/user.route";
 import workspaceRouter from "./routes/workspace.route";
 import memberRouter from "./routes/member.route";
 import projectRouter from "./routes/project.route";
+import taskRouter from "./routes/task.route";
 import "./config/passort.config";
 import passport from "passport";
 import isAuthenticated from "./middlewares/isAuthenticated.middleware";
@@ -60,6 +61,7 @@ app.use(`${BASE_PATH}/user`, isAuthenticated, userRouter);
 app.use(`${BASE_PATH}/workspace`, isAuthenticated, workspaceRouter);
 app.use(`${BASE_PATH}/member`, isAuthenticated, memberRouter);
 app.use(`${BASE_PATH}/project`, isAuthenticated, projectRouter);
+app.use(`${BASE_PATH}/task`, isAuthenticated, taskRouter);
 
 app.use(errorHandler);
 
